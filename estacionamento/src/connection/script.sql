@@ -7,3 +7,4 @@ CREATE TABLE vaga (
     rua varchar(100) NOT NULL,
     obliqua boolean NOT NULL,
     PRIMARY KEY (idVaga));
+)
