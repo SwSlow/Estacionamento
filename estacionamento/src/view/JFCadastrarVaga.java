@@ -1,13 +1,12 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
 
-/**
- *
- * @author luisg
- */
+import model.bean.Vaga;
+import model.dao.VagaDAO;
+
 public class JFCadastrarVaga extends javax.swing.JFrame {
 
     /**
@@ -29,15 +28,15 @@ public class JFCadastrarVaga extends javax.swing.JFrame {
         BGTipoVaga = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTFNumero = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTFRua = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jRBObliqua = new javax.swing.JRadioButton();
+        jRBParalela = new javax.swing.JRadioButton();
+        jBtnbutton = new javax.swing.JButton();
+        jBtnlimpar = new javax.swing.JToggleButton();
+        jBtnsalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,41 +46,53 @@ public class JFCadastrarVaga extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Sora", 0, 12)); // NOI18N
         jLabel2.setText("Número");
 
+        jTFNumero.setName(""); // NOI18N
+        jTFNumero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFNumeroActionPerformed(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Sora", 0, 12)); // NOI18N
         jLabel3.setText("Rua");
 
         jLabel4.setFont(new java.awt.Font("Sora", 0, 12)); // NOI18N
         jLabel4.setText("Tipo de vaga");
 
-        BGTipoVaga.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Sora", 0, 12)); // NOI18N
-        jRadioButton1.setText("Obliqua");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        BGTipoVaga.add(jRBObliqua);
+        jRBObliqua.setFont(new java.awt.Font("Sora", 0, 12)); // NOI18N
+        jRBObliqua.setText("Obliqua");
+        jRBObliqua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                jRBObliquaActionPerformed(evt);
             }
         });
 
-        BGTipoVaga.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Sora", 0, 12)); // NOI18N
-        jRadioButton2.setText("Paralela");
-
-        jButton1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jButton1.setText("Cancelar");
-
-        jButton2.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jButton2.setText("Salvar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BGTipoVaga.add(jRBParalela);
+        jRBParalela.setFont(new java.awt.Font("Sora", 0, 12)); // NOI18N
+        jRBParalela.setText("Paralela");
+        jRBParalela.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jRBParalelaActionPerformed(evt);
             }
         });
 
-        jToggleButton1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jToggleButton1.setText("Limpar");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnbutton.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jBtnbutton.setText("Cancelar");
+
+        jBtnlimpar.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jBtnlimpar.setText("Limpar");
+        jBtnlimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                jBtnlimparActionPerformed(evt);
+            }
+        });
+
+        jBtnsalvar.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jBtnsalvar.setText("Salvar");
+        jBtnsalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnsalvarActionPerformed(evt);
             }
         });
 
@@ -93,24 +104,24 @@ public class JFCadastrarVaga extends javax.swing.JFrame {
                 .addGap(82, 82, 82)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(jRBObliqua)
                         .addGap(42, 42, 42)
-                        .addComponent(jRadioButton2))
+                        .addComponent(jRBParalela))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(jBtnbutton)
                                 .addGap(39, 39, 39)
-                                .addComponent(jToggleButton1)
+                                .addComponent(jBtnlimpar)
                                 .addGap(45, 45, 45))
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2))
+                        .addComponent(jBtnsalvar))
+                    .addComponent(jTFNumero)
+                    .addComponent(jTFRua))
                 .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -121,39 +132,55 @@ public class JFCadastrarVaga extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTFNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTFRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jRBObliqua)
+                    .addComponent(jRBParalela))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jToggleButton1))
+                    .addComponent(jBtnbutton)
+                    .addComponent(jBtnsalvar)
+                    .addComponent(jBtnlimpar))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void jRBObliquaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBObliquaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_jRBObliquaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jBtnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnsalvarActionPerformed
+        Vaga v = new Vaga();
+        VagaDAO dao = new VagaDAO();
+        v.setNumero(Integer.parseInt(jTFNumero.getText()));
+        v.setRua(jTFRua.getText());
+        if(jRBObliqua.isSelected()){
+            v.setObliqua(true);
+        }else if (jRBParalela.isSelected()){
+            v.setObliqua(false);
+        }
+    }//GEN-LAST:event_jBtnsalvarActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void jBtnlimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnlimparActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_jBtnlimparActionPerformed
+
+    private void jTFNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNumeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFNumeroActionPerformed
+
+    private void jRBParalelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBParalelaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRBParalelaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,16 +220,16 @@ public class JFCadastrarVaga extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BGTipoVaga;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBtnbutton;
+    private javax.swing.JToggleButton jBtnlimpar;
+    private javax.swing.JButton jBtnsalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JRadioButton jRBObliqua;
+    private javax.swing.JRadioButton jRBParalela;
+    private javax.swing.JTextField jTFNumero;
+    private javax.swing.JTextField jTFRua;
     // End of variables declaration//GEN-END:variables
 }
