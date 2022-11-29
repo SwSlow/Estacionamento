@@ -4,10 +4,6 @@
  */
 package view;
 
-/**
- *
- * @author mateu
- */
 public class JfLogin extends javax.swing.JFrame {
 
     /**

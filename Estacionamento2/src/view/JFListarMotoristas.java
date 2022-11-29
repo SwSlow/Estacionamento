@@ -10,13 +10,12 @@ import javax.swing.table.DefaultTableModel;
 import model.dao.VagaDAO;
 import model.bean.Vaga;
 
-
-public class JFListarVagas extends javax.swing.JFrame {
+public class JFListarMotoristas extends javax.swing.JFrame {
 
     /**
      * Creates new form JFListarVagas
      */
-    public JFListarVagas() {
+    public JFListarMotoristas() {
         initComponents();
     }
 
@@ -44,21 +43,21 @@ public class JFListarVagas extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setText("Listar Vagas");
+        jLabel1.setText("Listar Motoristas");
 
         jTVaga.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Id da Vaga", "Número", "Rua", "Oblíqua"
+                "Nome", "Gênero", "RG", "CPF", "Celular", "Email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

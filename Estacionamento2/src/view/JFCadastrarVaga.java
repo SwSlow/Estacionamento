@@ -5,10 +5,7 @@
 package view;
 import model.bean.Vaga;
 import model.dao.VagaDAO;
-/**
- *
- * @author mateu
- */
+
 public class JFCadastrarVaga extends javax.swing.JFrame {
 
     /**
