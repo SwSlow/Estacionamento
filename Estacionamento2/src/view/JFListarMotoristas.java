@@ -1,6 +1,5 @@
 package view;
 
-
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.dao.MotoristaDAO;
@@ -54,17 +53,21 @@ public class JFListarMotoristas extends javax.swing.JFrame {
 
         jTMotorista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id motorista", "Nome", "Gênero", "RG", "CPF", "Celular", "Email", "Senha"
+                "Id motorista", "Nome", "Gênero", "RG", "CPF", "Celular", "Email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -85,86 +88,80 @@ public class JFListarMotoristas extends javax.swing.JFrame {
                         .addComponent(jBtnCadastrar)
                         .addGap(31, 31, 31)
                         .addComponent(jBtnEditar)
-                        .addGap(31, 31, 31)
-                        .addComponent(jBtnExcluir)))
-                .addContainerGap(268, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(JTMotorista1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(28, 28, 28)
+                        .addComponent(jBtnExcluir))
+                    .addComponent(JTMotorista1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 363, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JTMotorista1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnCadastrar)
                     .addComponent(jBtnEditar)
                     .addComponent(jBtnExcluir))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(61, 61, 61)
-                    .addComponent(JTMotorista1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(61, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
-    readJTable();
-    }  
-    
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {
+        readJTable();
+    }
+
+    public void readJTable() {
+        DefaultTableModel modelo = (DefaultTableModel) jTMotorista.getModel();
+        modelo.setNumRows(0);
+        MotoristaDAO dao = new MotoristaDAO();
+        for (Motorista m : dao.read()) {
+            System.out.println(m.getNome());
+            modelo.addRow(new Object[]{
+                m.getIdMotorista(),
+                m.getNome(),
+                m.getGenero(),
+                m.getRg(),
+                m.getCpf(),
+                m.getNumero(),
+                m.getEmail(),});
+        }
+    }
+
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        if(jTMotorista.getSelectedRow() != -1){
+        if (jTMotorista.getSelectedRow() != -1) {
             int opcao = JOptionPane.showConfirmDialog(null,
-                "Deseja excluir o motorista selecionado?", "Exclusão",
-                JOptionPane.YES_NO_OPTION);
-            if(opcao == 0){
+                    "Deseja excluir o motorista selecionado?", "Exclusão",
+                    JOptionPane.YES_NO_OPTION);
+            if (opcao == 0) {
                 MotoristaDAO dao = new MotoristaDAO();
                 Motorista m = new Motorista();
-                m.setIdMotorista((int)jTMotorista.getValueAt(jTMotorista.getSelectedRow(), 0));
+                m.setIdMotorista((int) jTMotorista.getValueAt(jTMotorista.getSelectedRow(), 0));
                 dao.delete(m);
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Selecione um motorista!","Erro",
-                JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um motorista!", "Erro",
+                    JOptionPane.ERROR_MESSAGE);
         }
         readJTable();
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
-        if(jTMotorista.getSelectedRow() != -1){
-            int motoristaSelecionado = (int)jTMotorista.getValueAt
-            (jTMotorista.getSelectedRow(), 0);
-            JFAtualizarMotorista av = new JFAtualizarMotorista(motoristaSelecionado);
-            av.setVisible(true);
-        }else{
+        if (jTMotorista.getSelectedRow() != -1) {
+            int motoristaSelecionado = (int) jTMotorista.getValueAt(jTMotorista.getSelectedRow(), 0);
+            JFAtualizarMotorista am = new JFAtualizarMotorista(motoristaSelecionado);
+            am.setVisible(true);
+        } else {
             JOptionPane.showMessageDialog(null, "Selecione um motorista!",
-                "Erro", JOptionPane.ERROR_MESSAGE);
+                    "Erro", JOptionPane.ERROR_MESSAGE);
         }
         readJTable();
     }//GEN-LAST:event_jBtnEditarActionPerformed
-    public void readJTable(){
-        DefaultTableModel modelo = (DefaultTableModel) jTMotorista.getModel();
-        modelo.setNumRows(0);
-        MotoristaDAO dao = new MotoristaDAO();
-        for(Motorista m: dao.read()){
-            modelo.addRow(new Object[]{
-            m.getNome(),
-            m.getGenero(),
-            m.getRg(),
-            m.getCpf(),
-            m.getNumero(),
-            m.getEmail(),
-        });
-        
-    }
-    }
+
     /**
      * @param args the command line arguments
      */

@@ -47,9 +47,9 @@ public class MotoristaDAO {
                 m.setIdMotorista(rs.getInt("idMotorista"));
                 m.setNome(rs.getString("nome"));
                 m.setGenero(rs.getString("genero"));
-                m.setRg(rs.getInt("RG"));
-                m.setCpf(rs.getInt("CPF"));
-                m.setNumero(rs.getInt("numero"));
+                m.setRg(rs.getInt("rg"));
+                m.setCpf(rs.getInt("cpg"));
+                m.setNumero(rs.getInt("celular"));
                 m.setEmail(rs.getString("email"));
                 m.setSenha(rs.getString("senha"));
                 motoristas.add(m);
@@ -89,13 +89,12 @@ public class MotoristaDAO {
             stmt.setInt(1, idMotorista);
             rs = stmt.executeQuery();
             if(rs != null && rs.next()){
-                 m.setIdMotorista(rs.getInt("idMotorista"));
+                m.setIdMotorista(rs.getInt("idMotorista"));
                 m.setNome(rs.getString("nome"));
                 m.setGenero(rs.getString("genero"));
-                m.setRg(rs.getInt("RG"));
-                m.setCpf(rs.getInt("CPF"));
-                m.setNumero(rs.getInt("numero"));
-                m.setRg(rs.getInt("RG"));
+                m.setRg(rs.getInt("rg"));
+                m.setCpf(rs.getInt("cpf"));
+                m.setNumero(rs.getInt("celular"));
                 m.setEmail(rs.getString("email"));
                 m.setSenha(rs.getString("senha"));
             }
@@ -111,7 +110,7 @@ public class MotoristaDAO {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try{
-            stmt = con.prepareStatement ("INSERT INTO vaga (nome, genero, rg, cpf, numero, email, senha) VALUES (?, ?, ?, ?, ?, ?, ?)"); 
+            stmt = con.prepareStatement ("UPDATE motorista SET nome=?, genero=?, rg=?, cpf=?, celular=?, email=?, senha=?"); 
             stmt.setString(1, m.getNome());
             stmt.setString(2, m.getGenero());
             stmt.setInt(3, m.getRg());
