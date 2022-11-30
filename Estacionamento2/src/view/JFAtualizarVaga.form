@@ -55,7 +55,7 @@
                           <Component id="jRBParalela" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                               <Component id="lblIdVaga" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -175,9 +175,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblIdVaga">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel7"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

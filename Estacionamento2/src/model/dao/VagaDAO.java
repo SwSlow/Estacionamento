@@ -10,8 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-
-
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.ArrayList;
@@ -86,8 +84,7 @@ public class VagaDAO {
         ResultSet rs = null;
         Vaga v = new Vaga();
         try{
-            stmt = con.prepareStatement(
-                    "SELECT * FROM vaga WHERE idVaga=? LIMIT 1;");
+            stmt = con.prepareStatement("SELECT * FROM vaga WHERE idVaga=? LIMIT 1;");
             stmt.setInt(1, idVaga);
             rs = stmt.executeQuery();
             if(rs != null && rs.next()){

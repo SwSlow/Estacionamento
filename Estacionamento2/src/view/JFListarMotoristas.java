@@ -1,19 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
+
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.dao.VagaDAO;
-import model.bean.Vaga;
+import model.dao.MotoristaDAO;
+import model.bean.Motorista;
 
 public class JFListarMotoristas extends javax.swing.JFrame {
 
     /**
-     * Creates new form JFListarVagas
+     * Creates new form JFListarMotoristas
      */
     public JFListarMotoristas() {
         initComponents();
@@ -29,58 +25,53 @@ public class JFListarMotoristas extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTVaga = new javax.swing.JTable();
+        jBtnExcluir = new javax.swing.JButton();
         jBtnCadastrar = new javax.swing.JButton();
         jBtnEditar = new javax.swing.JButton();
-        jBtnExcluir = new javax.swing.JButton();
+        JTMotorista1 = new javax.swing.JScrollPane();
+        jTMotorista = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Listar Motoristas");
 
-        jTVaga.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Nome", "Gênero", "RG", "CPF", "Celular", "Email"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        jBtnExcluir.setText("Excluir Motorista");
+        jBtnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnExcluirActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTVaga);
 
-        jBtnCadastrar.setText("Cadastrar Vaga");
+        jBtnCadastrar.setText("Cadastrar Motorista");
 
-        jBtnEditar.setText("Editar Vaga");
+        jBtnEditar.setText("Editar Motorista");
         jBtnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnEditarActionPerformed(evt);
             }
         });
 
-        jBtnExcluir.setText("Excluir Vaga");
-        jBtnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnExcluirActionPerformed(evt);
+        jTMotorista.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Id motorista", "Nome", "Gênero", "RG", "CPF", "Celular", "Email", "Senha"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        JTMotorista1.setViewportView(jTMotorista);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,85 +82,89 @@ public class JFListarMotoristas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBtnCadastrar)
-                                .addGap(31, 31, 31)
-                                .addComponent(jBtnEditar)
-                                .addGap(31, 31, 31)
-                                .addComponent(jBtnExcluir))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(jBtnCadastrar)
+                        .addGap(31, 31, 31)
+                        .addComponent(jBtnEditar)
+                        .addGap(31, 31, 31)
+                        .addComponent(jBtnExcluir)))
+                .addContainerGap(268, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(JTMotorista1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 363, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnCadastrar)
                     .addComponent(jBtnEditar)
                     .addComponent(jBtnExcluir))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(61, 61, 61)
+                    .addComponent(JTMotorista1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(61, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        readJTable();
-    }//GEN-LAST:event_formWindowOpened
-
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+    readJTable();
+    }  
+    
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        if(jTVaga.getSelectedRow() != -1){
+        if(jTMotorista.getSelectedRow() != -1){
             int opcao = JOptionPane.showConfirmDialog(null,
-                    "Deseja excluir a vaga selecionada?", "Exclusão",
-                    JOptionPane.YES_NO_OPTION);
+                "Deseja excluir o motorista selecionado?", "Exclusão",
+                JOptionPane.YES_NO_OPTION);
             if(opcao == 0){
-                VagaDAO dao = new VagaDAO();
-                Vaga v = new Vaga();
-                v.setIdVaga((int)jTVaga.getValueAt(jTVaga.getSelectedRow(), 0));
-                dao.delete(v);
+                MotoristaDAO dao = new MotoristaDAO();
+                Motorista m = new Motorista();
+                m.setIdMotorista((int)jTMotorista.getValueAt(jTMotorista.getSelectedRow(), 0));
+                dao.delete(m);
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Selecione uma vaga!","Erro",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selecione um motorista!","Erro",
+                JOptionPane.ERROR_MESSAGE);
         }
         readJTable();
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
-        if(jTVaga.getSelectedRow() != -1){
-            int vagaSelecionada = (int)jTVaga.getValueAt
-                (jTVaga.getSelectedRow(), 0);
-            JFAtualizarVaga av = new JFAtualizarVaga(vagaSelecionada);
+        if(jTMotorista.getSelectedRow() != -1){
+            int motoristaSelecionado = (int)jTMotorista.getValueAt
+            (jTMotorista.getSelectedRow(), 0);
+            JFAtualizarMotorista av = new JFAtualizarMotorista(motoristaSelecionado);
             av.setVisible(true);
         }else{
-            JOptionPane.showMessageDialog(null, "Selecione uma vaga!",
-                    "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selecione um motorista!",
+                "Erro", JOptionPane.ERROR_MESSAGE);
         }
         readJTable();
     }//GEN-LAST:event_jBtnEditarActionPerformed
-
     public void readJTable(){
-        DefaultTableModel modelo = (DefaultTableModel) jTVaga.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) jTMotorista.getModel();
         modelo.setNumRows(0);
-        VagaDAO dao = new VagaDAO();
-        for(Vaga v: dao.read()){
+        MotoristaDAO dao = new MotoristaDAO();
+        for(Motorista m: dao.read()){
             modelo.addRow(new Object[]{
-            v.getIdVaga(),
-            v.getNumero(),
-            v.getRua(),
-            v.isObliqua()
+            m.getNome(),
+            m.getGenero(),
+            m.getRg(),
+            m.getCpf(),
+            m.getNumero(),
+            m.getEmail(),
         });
         
     }
     }
-    
     /**
      * @param args the command line arguments
      */
@@ -187,30 +182,30 @@ public class JFListarMotoristas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFListarVagas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFListarMotoristas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFListarVagas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFListarMotoristas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFListarVagas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFListarMotoristas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFListarVagas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFListarMotoristas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFListarVagas().setVisible(true);
+                new JFListarMotoristas().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane JTMotorista1;
     private javax.swing.JButton jBtnCadastrar;
     private javax.swing.JButton jBtnEditar;
     private javax.swing.JButton jBtnExcluir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTVaga;
+    private javax.swing.JTable jTMotorista;
     // End of variables declaration//GEN-END:variables
 }

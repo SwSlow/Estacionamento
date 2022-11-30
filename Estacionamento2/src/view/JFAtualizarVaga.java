@@ -91,8 +91,6 @@ public class JFAtualizarVaga extends javax.swing.JFrame {
 
         jLabel6.setText("Id da Vaga:");
 
-        lblIdVaga.setText("jLabel7");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,7 +117,7 @@ public class JFAtualizarVaga extends javax.swing.JFrame {
                             .addComponent(jRBParalela, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(86, 86, 86)
                                 .addComponent(lblIdVaga)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())

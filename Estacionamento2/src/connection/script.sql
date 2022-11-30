@@ -16,6 +16,6 @@ create table motorista (
     cpf         int NOT NULL,
     celular     int NOT NULL,
     email       varchar (50),
-    senha       varchar (32)
+    senha       varchar (32),
     PRIMARY KEY (idMotorista)
 );
